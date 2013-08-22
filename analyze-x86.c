@@ -44,14 +44,22 @@ int main(int argc, char** argv)
 
 
     if (argc != 2) { printf("Syntax: %s <binary>\n", argv[0]); return (-1); }
+#ifdef __APPLE__
+    snprintf(tmp, 8191, "otool -tV %s", argv[1]);
+#else
     snprintf(tmp, 8191, "objdump -d %s", argv[1]);
+#endif
     f = popen(tmp, "r");
     if (!f) { printf("%s\n", "unable to disassembly given binary argument"); return (-1); }
 
     while ( fgets ( tmp , 8191, f ) ) {
         e = strtok (tmp, "\t");
         if (e) { e = strtok (NULL, "\t");
+#ifndef __APPLE__
            if (e) { e = strtok (NULL, "\t"); /* 3rd column contains instruction */
+#else
+           {
+#endif
            snprintf(itmp, 255, "%s", e);
            s = strtok (itmp, " "); /* formatting as spaces */
              if (s) { x = s; /* clean, in case instruction is without args, i.e. nop */
