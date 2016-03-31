@@ -1,4 +1,4 @@
-CC=gcc-4.9
+CC=gcc-5
 CFLAGS=-O2 -march=native -mtune=native
 
 all:
