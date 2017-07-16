@@ -32,7 +32,6 @@
 int main(int argc, char** argv)
 {   char tmp[8192];
     char *e, *s, *x;
-    int ret = 0;
     char itmp[256];
     FILE *f;
     int i, ok;
