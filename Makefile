@@ -1,7 +1,7 @@
 #variables de compilation
 SHELL := /bin/sh
 CC    := gcc
-CFLAGS :=-O3 -flto -Wall -ffast-math -std=gnu90
+CFLAGS +=-O3 -flto -Wall -ffast-math -std=gnu90
 TARGET   := analyze-x86
 #variable de nettoyage
 RM_F := rm -f
